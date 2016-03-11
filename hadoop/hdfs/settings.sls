@@ -41,7 +41,7 @@
 {%- set namenode_port         = gc.get('namenode_port', pc.get('namenode_port', '8020')) %}
 {%- set namenode_http_port    = gc.get('namenode_http_port', pc.get('namenode_http_port', '50070')) %}
 {%- set secondarynamenode_http_port  = gc.get('secondarynamenode_http_port', pc.get('secondarynamenode_http_port', '50090')) %}
-{%- set local_disks           = salt['grains.get']('hdfs_data_disks', ['/data']) %}
+{%- set local_disks           = salt['grains.get']('hdfs_data_disks', ['/mnt']) %}
 {%- set hdfs_repl_override    = gc.get('replication', pc.get('replication', 'x')) %}
 {%- set load                  = salt['grains.get']('hdfs_load', salt['pillar.get']('hdfs_load', {})) %}
 {%- set ha_cluster_id         = salt['grains.get']('ha_cluster_id', salt['pillar.get']('ha_cluster_id', 'hdfscluster')) %}
