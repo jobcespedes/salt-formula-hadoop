@@ -121,7 +121,6 @@ move-hadoop-dist-conf:
     - group: root
   cmd.run:
     - name: mv  {{ real_config_src }} {{ hadoop.real_config_dist }}
-    - unless: test -d {{ hadoop.real_config_dist }}
     - onlyif: test -d {{ real_config_src }}
     - require:
       - file: /etc/hadoop
