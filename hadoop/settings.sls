@@ -139,7 +139,7 @@
 {%- set real_home        = '/usr/lib/' + version_info['version_name'] %}
 {%- set alt_config       = gc.get('directory', pc.get('directory', '/etc/hadoop/conf')) %}
 {%- set real_config      = alt_config + '-' + version_info['version'] %}
-{%- set real_config_dist = alt_config + '.dist' %}
+{%- set real_config_dist = real_config %}
 {%- set default_log_root = '/var/log/hadoop' %}
 {%- set log_root         = gc.get('log_root', pc.get('log_root', default_log_root)) %}
 {%- set initscript       = 'hadoop.init' %}
