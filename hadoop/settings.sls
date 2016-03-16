@@ -139,7 +139,7 @@
 {%- set real_home        = '/usr/lib/' + version_info['version_name'] %}
 {%- set alt_config       = gc.get('directory', pc.get('directory', '/etc/hadoop/conf')) %}
 {%- set real_config      = alt_config + '-' + version_info['version'] %}
-{%- set real_config_dist = real_config %}
+{%- set real_config_dist = alt_config + '.dist' %}
 {%- set default_log_root = '/var/log/hadoop' %}
 {%- set log_root         = gc.get('log_root', pc.get('log_root', default_log_root)) %}
 {%- set initscript       = 'hadoop.init' %}
@@ -155,7 +155,7 @@
 
 {%- set java_home        = salt['grains.get']('java_home', salt['pillar.get']('java_home', '/usr/lib/java')) %}
 {%- set config_core_site = gc.get('core-site', pc.get('core-site', {})) %}
-
+{%- set conf_files =['capacity-scheduler.xml','configuration.xsl','container-executor.cfg','core-site.xml','hadoop-env.cmd','hadoop-env.sh','hadoop-metrics2.properties','hadoop-metrics.properties','hadoop-policy.xml','hdfs-site.xml','httpfs-env.sh','httpfs-log4j.properties','httpfs-signature.secret','httpfs-site.xml','kms-acls.xml','kms-env.sh','kms-log4j.properties','kms-site.xml','log4j.properties','mapred-env.cmd','mapred-env.sh','mapred-queues.xml.template','mapred-site.xml.template','slaves','ssl-client.xml.example','ssl-server.xml.example','yarn-env.cmd','yarn-env.sh','yarn-site.xml'] %}
 {%- set hadoop = {} %}
 {%- do hadoop.update( {   'dist_id'          : dist_id,
                           'cdhmr1'           : version_info.get('cdhmr1', False),
@@ -176,5 +176,6 @@
                           'log_root'         : log_root,
                           'default_log_root' : default_log_root,
                           'config_core_site' : config_core_site,
-                          'targeting_method': targeting_method,
+                          'targeting_method' : targeting_method,
+                          'conf_files'       : conf_files
                       }) %}

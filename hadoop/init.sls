@@ -121,6 +121,7 @@ move-hadoop-dist-conf:
     - group: root
   cmd.run:
     - name: mv  {{ real_config_src }} {{ hadoop.real_config_dist }}
+    - unless: test -d {{ hadoop.real_config_dist }}
     - onlyif: test -d {{ real_config_src }}
     - require:
       - file: /etc/hadoop
@@ -140,15 +141,18 @@ hadoop-conf-link:
     - require:
       - file: {{ hadoop['real_config'] }}
 
-{{ hadoop['real_config'] }}/log4j.properties:
+{%- for file in hadoop['config_files'] %}
+{{ hadoop['real_config'] }}/{{ file }}:
   file.copy:
-    - source: {{ hadoop['real_config_dist'] }}/log4j.properties
+    - source: {{ hadoop['real_config_dist'] }}/{{ file }}
     - user: root
     - group: root
     - mode: 644
     - require:
       - file: {{ hadoop['real_config'] }}
       - alternatives: hadoop-conf-link
+      - move-hadoop-dist-conf
+{{%- endfor %}
 
 {{ hadoop['real_config'] }}/hadoop-env.sh:
   file.managed:
