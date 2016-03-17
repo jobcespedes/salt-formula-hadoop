@@ -141,18 +141,18 @@ hadoop-conf-link:
     - require:
       - file: {{ hadoop['real_config'] }}
 
-{%- for file in hadoop['conf_files'] %}
-{{ hadoop['real_config'] }}/{{ file }}:
-  file.copy:
-    - source: {{ hadoop['real_config_dist'] }}/{{ file }}
-    - user: root
-    - group: root
-    - mode: 644
-    - require:
-      - file: {{ hadoop['real_config'] }}
-      - alternatives: hadoop-conf-link
-      - cmd: move-hadoop-dist-conf
-{%- endfor %}
+#{%- for file in hadoop['conf_files'] %}
+#{{ hadoop['real_config'] }}/{{ file }}:
+#  file.copy:
+#    - source: {{ hadoop['real_config_dist'] }}/{{ file }}
+#    - user: root
+#    - group: root
+#    - mode: 644
+#    - require:
+#      - file: {{ hadoop['real_config'] }}
+#      - alternatives: hadoop-conf-link
+#      - cmd: move-hadoop-dist-conf
+#{%- endfor %}
 
 {{ hadoop['real_config'] }}/hadoop-env.sh:
   file.managed:

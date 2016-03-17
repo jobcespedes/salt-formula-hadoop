@@ -65,9 +65,9 @@
       hadoop_major: {{ hadoop.major_version }}
       hadoop_home: {{ hadoop.alt_home }}
 
-hadoop-jobtracker:
-  service.running:
-    - enable: True
+#hadoop-jobtracker:
+#  service.running:
+#    - enable: True
 {%- endif %}
 
 {% if mapred.is_tasktracker %}
@@ -84,9 +84,9 @@ hadoop-jobtracker:
       hadoop_major: {{ hadoop.major_version }}
       hadoop_home: {{ hadoop.alt_home }}
 
-hadoop-tasktracker:
-  service.running:
-    - enable: True
+#hadoop-tasktracker:
+#  service.running:
+#    - enable: True
 
 {%- endif %}
 
