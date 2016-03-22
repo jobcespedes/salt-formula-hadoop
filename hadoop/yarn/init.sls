@@ -109,9 +109,9 @@ fix-executor-permissions:
       hadoop_major: {{ hadoop.major_version }}
       hadoop_home: {{ hadoop.alt_home }}
 
-#hadoop-historyserver:
-#  service.running:
-#    - enable: True
+hadoop-historyserver:
+  service.running:
+    - enable: True
 
 /etc/init.d/hadoop-resourcemanager:
   file.managed:
@@ -126,9 +126,9 @@ fix-executor-permissions:
       hadoop_major: {{ hadoop.major_version }}
       hadoop_home: {{ hadoop.alt_home }}
 
-#hadoop-resourcemanager:
-#  service.running:
-#    - enable: True
+hadoop-resourcemanager:
+  service.running:
+    - enable: True
 {% endif %}
 
 {% if yarn.is_nodemanager %}
@@ -146,9 +146,9 @@ fix-executor-permissions:
       hadoop_major: {{ hadoop.major_version }}
       hadoop_home: {{ hadoop.alt_home }}
 
-#hadoop-nodemanager:
-#  service.running:
-#    - enable: True
+hadoop-nodemanager:
+  service.running:
+    - enable: True
 {% endif %}
 
 {%- endif %}
