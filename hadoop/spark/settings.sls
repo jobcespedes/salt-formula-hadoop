@@ -97,9 +97,13 @@
 {%- set real_home        = '/usr/lib/' + version_info['version_name'] %}
 # only install spark on what is specified as the spark target. Defaults to the hadoop_master
 {%- set spark_target      = g.get('spark_target', p.get('spark_target', 'roles:hadoop_master')) %}
+{%- set spark_master      = g.get('spark_master', p.get('spark_master', 'roles:hadoop_master')) %}
+{%- set spark_slave       = g.get('spark_slave',  p.get('spark_slave',  'roles:hadoop_slave')) %}
 {%- set targeting_method            = salt['grains.get']('spark:targeting_method', salt['pillar.get']('spark:targeting_method', 'grain')) %}
 
 {%- set is_sparktarget = salt['match.' ~ targeting_method](spark_target) %}
+{%- set is_sparkmaster = salt['match.' ~ targeting_method](spark_master) %}
+{%- set is_sparkslave = salt['match.' ~ targeting_method](spark_slave) %}
 
 {%- set spark = {} %}
 {%- do spark.update({  'dist_id'          : dist_id,
@@ -109,4 +113,6 @@
                        'alt_home'         : alt_home,
                        'real_home'        : real_home,
                        'is_sparktarget'   : is_sparktarget,
+                       'is_sparkmaster'   : is_sparkmaster,
+                       'is_sparkslave'    : is_sparkslave,
                    }) %}

@@ -23,3 +23,25 @@ spark-home-link:
     - require:
       - cmd: unpack-spark-package
 {% endif %}
+
+{% if spark.is_sparkmaster %}
+#create directory for logging
+{{ spark['real_home'] }}/logs:
+  file.directory:
+    - user: spark
+    - mode: 755
+    - require:
+      - alternatives: spark-home-link
+
+#start spark daemons
+{{ spark['real_home'] }}/sbin/start-all.sh:
+  cmd.run:
+  - user: spark
+  - shell: /bin/bash
+  - require:
+    - alternatives: spark-home-link
+{% endif %}
+
+{% if spark.is_sparkslave %}
+{% endif %}
+
