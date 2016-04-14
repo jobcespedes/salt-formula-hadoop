@@ -4,11 +4,16 @@
 {% set gc = g.get('config', {}) %}
 
 {%- set versions = {} %}
-{%- set default_dist_id = 'spark-1.5.1-bin-hadoop2.6' %}
+{%- set default_dist_id = 'spark-1.6.1-bin-hadoop2.6' %}
 {%- set dist_id = g.get('version', p.get('version', default_dist_id)) %}
 
 # Several prebuilt versions for different versions of hadoop
-{%- set default_versions = { 'spark-1.5.1-bin-hadoop2.6' : { 'version'       : '1.5.1-bin-hadoop2.6',
+{%- set default_versions = { 'spark-1.6.1-bin-hadoop2.6' : { 'version'       : '1.6.1-bin-hadoop2.6',
+                                                             'version_name'  : 'spark-1.6.1-bin-hadoop2.6',
+                                                             'source_url'    : g.get('source_url', p.get('source_url', 'http://www.apache.org/dyn/closer.lua/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz')),
+                                                             'major_version' : '1'
+                                                            },
+                            'spark-1.5.1-bin-hadoop2.6' : { 'version'       : '1.5.1-bin-hadoop2.6',
                                                              'version_name'  : 'spark-1.5.1-bin-hadoop2.6',
                                                              'source_url'    : g.get('source_url', p.get('source_url', 'http://d3kbcqa49mib13.cloudfront.net/spark-1.5.1-bin-hadoop2.6.tgz')),
                                                              'major_version' : '1'
@@ -116,3 +121,4 @@
                        'is_sparkmaster'   : is_sparkmaster,
                        'is_sparkslave'    : is_sparkslave,
                    }) %}
+
