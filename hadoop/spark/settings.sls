@@ -10,7 +10,7 @@
 # Several prebuilt versions for different versions of hadoop
 {%- set default_versions = { 'spark-1.6.1-bin-hadoop2.6' : { 'version'       : '1.6.1-bin-hadoop2.6',
                                                              'version_name'  : 'spark-1.6.1-bin-hadoop2.6',
-                                                             'source_url'    : g.get('source_url', p.get('source_url', 'http://www.apache.org/dyn/closer.lua/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz')),
+                                                             'source_url'    : g.get('source_url', p.get('source_url', 'http://www-us.apache.org/dist/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz')),
                                                              'major_version' : '1'
                                                             },
                             'spark-1.5.1-bin-hadoop2.6' : { 'version'       : '1.5.1-bin-hadoop2.6',
@@ -97,9 +97,13 @@
                            }%}
 
 {%- set versions         = p.get('versions', default_versions) %}
-{%- set version_info     = versions.get(dist_id, versions['spark-1.5.1-bin-hadoop2.6']) %}
+{%- set version_info     = versions.get(dist_id, versions['spark-1.6.1-bin-hadoop2.6']) %}
 {%- set alt_home         = salt['pillar.get']('spark:prefix', '/usr/lib/spark') %}
 {%- set real_home        = '/usr/lib/' + version_info['version_name'] %}
+{%- set alt_config       = gc.get('directory', pc.get('directory', '/etc/spark/conf')) %}
+{%- set real_config      = alt_config + '-' + version_info['version'] %}
+{%- set real_config_dist = alt_config + '.dist' %}
+{%- set conf_files       = [] %}
 # only install spark on what is specified as the spark target. Defaults to the hadoop_master
 {%- set spark_target      = g.get('spark_target', p.get('spark_target', 'roles:hadoop_master')) %}
 {%- set spark_master      = g.get('spark_master', p.get('spark_master', 'roles:hadoop_master')) %}
@@ -117,6 +121,10 @@
                        'major_version'    : version_info['major_version']|string(),
                        'alt_home'         : alt_home,
                        'real_home'        : real_home,
+                       'real_config'      : real_config,
+                       'alt_config'       : alt_config,
+                       'real_config_dist' : real_config_dist,
+                       'conf_files'       : conf_files,
                        'is_sparktarget'   : is_sparktarget,
                        'is_sparkmaster'   : is_sparkmaster,
                        'is_sparkslave'    : is_sparkslave,
