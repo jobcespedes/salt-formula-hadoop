@@ -49,6 +49,14 @@ spark-home-link-update:
     - require:
       - alternatives: spark-home-link-update
 
+#create directory for logging applications
+{{ spark['real_home'] }}/work:
+  file.directory:
+    - user: spark
+    - mode: 755
+    - require:
+      - alternatives: spark-home-link-update
+
 /etc/spark:
   file.directory:
     - user: root
