@@ -2,7 +2,7 @@
 hadoop
 ======
 
-Formula to set up and configure hadoop components
+Formula to set up and configure hadoop components 
 
 .. note::
 
