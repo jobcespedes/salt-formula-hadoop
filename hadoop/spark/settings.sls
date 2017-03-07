@@ -8,7 +8,22 @@
 {%- set dist_id = g.get('version', p.get('version', default_dist_id)) %}
 
 # Several prebuilt versions for different versions of hadoop
-{%- set default_versions = { 'spark-1.6.1-bin-hadoop2.6' : { 'version'       : '1.6.1-bin-hadoop2.6',
+{%- set default_versions = {'spark-2.1.0-bin-hadoop2.7' : { 'version'       : '2.1.0-bin-hadoop2.7',
+                                                             'version_name'  : 'spark-2.1.0-bin-hadoop2.7',
+                                                             'source_url'    : g.get('source_url', p.get('source_url', 'http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7.tgz')),
+                                                             'major_version' : '2'
+                                                            },
+                            'spark-2.0.1-bin-hadoop2.7' : { 'version'       : '2.0.1-bin-hadoop2.7',
+                                                             'version_name'  : 'spark-2.0.1-bin-hadoop2.7',
+                                                             'source_url'    : g.get('source_url', p.get('source_url', 'http://d3kbcqa49mib13.cloudfront.net/spark-2.0.1-bin-hadoop2.7.tgz')),
+                                                             'major_version' : '2'
+                                                            },
+                            'spark-2.0.1-bin-hadoop2.6' : { 'version'       : '2.0.1-bin-hadoop2.6',
+                                                             'version_name'  : 'spark-2.0.1-bin-hadoop2.6',
+                                                             'source_url'    : g.get('source_url', p.get('source_url', 'http://d3kbcqa49mib13.cloudfront.net/spark-2.0.1-bin-hadoop2.6.tgz')),
+                                                             'major_version' : '2'
+                                                            },
+                            'spark-1.6.1-bin-hadoop2.6' : { 'version'       : '1.6.1-bin-hadoop2.6',
                                                              'version_name'  : 'spark-1.6.1-bin-hadoop2.6',
                                                              'source_url'    : g.get('source_url', p.get('source_url', 'http://d3kbcqa49mib13.cloudfront.net/spark-1.6.1-bin-hadoop2.6.tgz')),
                                                              'major_version' : '1'
