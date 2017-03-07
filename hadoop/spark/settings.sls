@@ -112,7 +112,7 @@
                            }%}
 
 {%- set versions         = p.get('versions', default_versions) %}
-{%- set version_info     = versions.get(dist_id, versions['2.1.0-bin-hadoop2.7']) %}
+{%- set version_info     = versions.get(dist_id, versions['2.0.1-bin-hadoop2.7']) %}
 {%- set alt_home         = salt['pillar.get']('spark:prefix', '/usr/lib/spark') %}
 {%- set real_home        = '/usr/lib/' + version_info['version_name'] %}
 {%- set alt_config       = gc.get('directory', pc.get('directory', '/etc/spark/conf')) %}
