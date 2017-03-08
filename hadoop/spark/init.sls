@@ -14,7 +14,7 @@ unpack-spark-package:
   cmd.run:
     - name: curl '{{ spark.source_url }}' | tar xz --no-same-owner
     - cwd: /usr/lib
-    - unless: test -d {{ spark['real_home'] }}/lib
+    - unless: test -d {{ spark['real_home'] }}/bin
 
 spark-home-link:
   alternatives.install:
