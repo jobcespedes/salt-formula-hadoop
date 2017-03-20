@@ -1,6 +1,6 @@
 #!/bin/bash
 
-names=${1:-"hdfs mapred yarn spark"}
+names=${1:-"hdfs mapred yarn spark ubuntu"}
 
 for name in $names
 do

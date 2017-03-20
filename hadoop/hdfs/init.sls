@@ -215,3 +215,6 @@ hdfs-services:
 {% endif %}   
 {% endif %}
 
+{% if grains['os'] == 'Ubuntu' %}
+{{ hadoop_user("ubuntu", 1000) }}
+{% endif %} 
