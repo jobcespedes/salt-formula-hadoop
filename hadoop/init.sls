@@ -178,4 +178,6 @@ hadoop-conf-link:
       java_home: {{ hadoop.java_home }}
       hadoop_home: {{ hadoop.alt_home }}
       hadoop_config: {{ hadoop.alt_config }}
+python-numpy:
+  pkg.installed
 {%- endif %}
