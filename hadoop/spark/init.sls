@@ -103,6 +103,13 @@ spark-conf-link:
       java_home: {{ hadoop.java_home }}
       hadoop_conf_dir: {{ hadoop.alt_config }}
 
+{{ spark['real_config'] }}/spark-defaults.conf:
+  file.managed:
+    - source: salt://hadoop/conf/spark/spark-defaults.conf
+    - mode: 644
+    - user: root
+    - group: root
+
 {%- for file in spark['conf_files'] %}
 {{ spark['real_config'] }}/{{ file }}:
   file.copy:
