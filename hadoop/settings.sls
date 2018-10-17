@@ -45,7 +45,7 @@
                                       },
                      'apache-2.7.1' : { 'version'       : '2.7.1',
                                         'version_name'  : 'hadoop-2.7.1',
-                                        'source_url'    : g.get('source_url', p.get('source_url', 'http://archive.apache.org/dist/hadoop/core/hadoop-2.7.1/hadoop-2.7.1.tar.gz')),
+                                        'source_url'    : g.get('source_url', p.get('source_url', 'https://portafoliovirtual.ucr.ac.cr/files/hadoop-2.7.1.tar.gz')),
                                         'source_hash'   : g.get('source_hash', p.get('source_hash', '')),
                                         'major_version' : '2',
                                       },
